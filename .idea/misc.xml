@@ -5,8 +5,12 @@
       <map>
         <entry key="..\:/Projects/Android/Labs/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1695" />
         <entry key="..\:/Projects/Android/Labs/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1695" />
+        <entry key="..\:/Projects/Android/Labs/app/src/main/res/layout/activity_database.xml" value="0.25" />
         <entry key="..\:/Projects/Android/Labs/app/src/main/res/layout/activity_lab1.xml" value="0.25" />
+        <entry key="..\:/Projects/Android/Labs/app/src/main/res/layout/activity_lab2.xml" value="0.25" />
+        <entry key="..\:/Projects/Android/Labs/app/src/main/res/layout/activity_lab3.xml" value="0.25" />
         <entry key="..\:/Projects/Android/Labs/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Projects/Android/Labs/app/src/main/res/layout/fragment_lab2_result.xml" value="0.25" />
       </map>
     </option>
   </component>

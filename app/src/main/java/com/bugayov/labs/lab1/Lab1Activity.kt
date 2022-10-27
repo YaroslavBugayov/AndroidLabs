@@ -1,11 +1,11 @@
-package com.bugayov.labs
+package com.bugayov.labs.lab1
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
+import com.bugayov.labs.R
 
 class Lab1Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

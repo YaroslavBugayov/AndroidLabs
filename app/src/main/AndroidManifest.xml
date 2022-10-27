@@ -10,7 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidLabs">
         <activity
-            android:name=".Lab1Activity"
+            android:name=".lab3.DatabaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".lab3.Lab3Activity"
+            android:exported="false" />
+        <activity
+            android:name=".lab2.Lab2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".lab1.Lab1Activity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
