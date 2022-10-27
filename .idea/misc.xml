@@ -9,8 +9,15 @@
         <entry key="..\:/Projects/Android/Labs/app/src/main/res/layout/activity_lab1.xml" value="0.25" />
         <entry key="..\:/Projects/Android/Labs/app/src/main/res/layout/activity_lab2.xml" value="0.25" />
         <entry key="..\:/Projects/Android/Labs/app/src/main/res/layout/activity_lab3.xml" value="0.25" />
+        <entry key="..\:/Projects/Android/Labs/app/src/main/res/layout/activity_lab4.xml" value="0.25" />
         <entry key="..\:/Projects/Android/Labs/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Projects/Android/Labs/app/src/main/res/layout/activity_menu.xml" value="0.25" />
+        <entry key="..\:/Projects/Android/Labs/app/src/main/res/layout/fragment_audio_menu.xml" value="0.25" />
         <entry key="..\:/Projects/Android/Labs/app/src/main/res/layout/fragment_lab2_result.xml" value="0.25" />
+        <entry key="..\:/Projects/Android/Labs/app/src/main/res/layout/fragment_menu.xml" value="0.25" />
+        <entry key="..\:/Projects/Android/Labs/app/src/main/res/layout/fragment_video.xml" value="0.25" />
+        <entry key="..\:/Projects/Android/Labs/app/src/main/res/layout/fragment_video_link.xml" value="0.25" />
+        <entry key="..\:/Projects/Android/Labs/app/src/main/res/layout/fragment_video_menu.xml" value="0.2359375" />
       </map>
     </option>
   </component>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="60dp"
-    tools:context=".lab3.Lab3Activity">
+    tools:context=".lab4.Lab4Activity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,34 +21,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="@string/lab3_button_text"
+            android:text="@string/lab4_button_text"
             android:textAlignment="center"
             android:textSize="26sp" />
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/languages" />
-
         <Button
-            android:id="@+id/buttonAdd"
+            android:id="@+id/buttonOpen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/add" />
+            android:text="@string/open_file" />
 
-        <Button
-            android:id="@+id/buttonDatabase"
+        <FrameLayout
+            android:id="@+id/frameContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/database" />
+            android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/buttonClear"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/clear" />
-
+        </FrameLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

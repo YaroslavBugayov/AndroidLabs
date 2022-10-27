@@ -21,4 +21,12 @@
     <string name="add">Add</string>
     <string name="empty">Database is empty</string>
     <string name="successful">Data written successfully</string>
+    <string name="open_file">Open file</string>
+    <string name="open_video">Open video</string>
+    <string name="open_audio">Open audio</string>
+    <string name="open_example">Open example</string>
+    <string name="open_local">Open local file</string>
+    <string name="open_link">Open link</string>
+    <string name="link">Link</string>
+    <string name="apply">Apply</string>
 </resources>

@@ -7,6 +7,7 @@ import android.widget.Button
 import com.bugayov.labs.lab1.Lab1Activity
 import com.bugayov.labs.lab2.Lab2Activity
 import com.bugayov.labs.lab3.Lab3Activity
+import com.bugayov.labs.lab4.Lab4Activity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +22,9 @@ class MainActivity : AppCompatActivity() {
         }
         findViewById<Button>(R.id.buttonLab3).setOnClickListener {
             startActivity(Intent(this, Lab3Activity::class.java))
+        }
+        findViewById<Button>(R.id.buttonLab4).setOnClickListener {
+            startActivity(Intent(this, Lab4Activity::class.java))
         }
 
     }
