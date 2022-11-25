@@ -32,7 +32,7 @@ class VideoMenuFragment(private val packageName: String) : Fragment() {
                 .commit()
         }
         inf.findViewById<Button>(R.id.buttonVideoLocal).setOnClickListener {
-            getContent.launch("video/mp4")
+            getContent.launch("video/*")
         }
         inf.findViewById<Button>(R.id.buttonVideoLink).setOnClickListener {
 

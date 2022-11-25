@@ -24,7 +24,7 @@ class MenuFragment(private val packageName: String) : Fragment() {
         inf.findViewById<Button>(R.id.buttonOpenAudio).setOnClickListener {
             requireActivity().supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.frameContent, AudioMenuFragment())
+                .replace(R.id.frameContent, AudioMenuFragment(packageName))
                 .commit()
         }
         return inf

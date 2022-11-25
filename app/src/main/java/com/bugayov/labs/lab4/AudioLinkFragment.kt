@@ -1,5 +1,7 @@
 package com.bugayov.labs.lab4
 
+import android.media.AudioAttributes
+import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
@@ -7,47 +9,59 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.SeekBar
-import android.widget.TextView
+import android.widget.*
 import com.bugayov.labs.R
 import java.lang.NullPointerException
 
-class AudioFragment(private val music: Uri?) : Fragment() {
+class AudioLinkFragment : Fragment() {
 
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var seekBar: SeekBar
     private var minutes: Int = 0
     private var seconds: Int = 0
+    private var music: Uri = Uri.EMPTY
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val inf = inflater.inflate(R.layout.fragment_audio, container, false)
+        val inf = inflater.inflate(R.layout.fragment_audio_link, container, false)
         val buttonPlay = inf.findViewById<ImageButton>(R.id.buttonPlay)
         val buttonStop = inf.findViewById<ImageButton>(R.id.buttonStop)
         seekBar = inf.findViewById(R.id.seekBar)
         seekBar.isEnabled = false
-
         buttonPlay.setOnClickListener {
-            if (mediaPlayer == null) {
-                mediaPlayer = MediaPlayer.create(context, music)
-                mediaPlayer!!.isLooping = true
-                mediaPlayer!!.start()
-                buttonPlay.setImageResource(R.drawable.pause)
-                startSeekBar(inf)
-                seekBar.isEnabled = true
-            } else {
-                if (mediaPlayer!!.isPlaying) {
-                    mediaPlayer!!.pause()
-                    buttonPlay.setImageResource(R.drawable.play)
-                } else {
+            if (music != Uri.EMPTY) {
+                if (mediaPlayer == null){
+                    mediaPlayer = MediaPlayer()
+                    mediaPlayer!!.isLooping = true
+                    mediaPlayer!!.setAudioAttributes(
+                        AudioAttributes.Builder()
+                            .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                            .setLegacyStreamType(AudioManager.STREAM_MUSIC)
+                            .setUsage(AudioAttributes.USAGE_MEDIA)
+                            .build()
+                    )
+                    mediaPlayer!!.setDataSource(requireContext(), music)
+                    mediaPlayer!!.prepare()
                     mediaPlayer!!.start()
                     buttonPlay.setImageResource(R.drawable.pause)
                     startSeekBar(inf)
+                    seekBar.isEnabled = true
+                } else {
+                    if (mediaPlayer!!.isPlaying) {
+                        mediaPlayer!!.pause()
+                        buttonPlay.setImageResource(R.drawable.play)
+                    } else {
+                        mediaPlayer!!.start()
+                        buttonPlay.setImageResource(R.drawable.pause)
+                        startSeekBar(inf)
+                    }
                 }
+            } else {
+                Toast.makeText(context, getText(R.string.link_empty), Toast.LENGTH_SHORT).show()
             }
+
         }
 
         buttonStop.setOnClickListener {
@@ -81,6 +95,13 @@ class AudioFragment(private val music: Uri?) : Fragment() {
             }
 
         })
+
+        val input = inf.findViewById<EditText>(R.id.inputLink)
+        input.setText("https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3")
+
+        inf.findViewById<Button>(R.id.buttonLink).setOnClickListener {
+            music = Uri.parse(input.text.toString())
+        }
 
         return inf
     }
