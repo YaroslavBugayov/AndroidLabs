@@ -1,8 +1,6 @@
 package com.bugayov.labs.lab4
 
-import android.media.AudioAttributes
 import android.media.AudioManager
-import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,11 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.bugayov.labs.R
+import wseemann.media.FFmpegMediaPlayer
 import java.lang.NullPointerException
 
 class AudioLinkFragment : Fragment() {
 
-    private var mediaPlayer: MediaPlayer? = null
+    private var mediaPlayer: FFmpegMediaPlayer? = null
     private lateinit var seekBar: SeekBar
     private var minutes: Int = 0
     private var seconds: Int = 0
@@ -33,29 +32,40 @@ class AudioLinkFragment : Fragment() {
         buttonPlay.setOnClickListener {
             if (music != Uri.EMPTY) {
                 if (mediaPlayer == null){
-                    mediaPlayer = MediaPlayer()
-                    mediaPlayer!!.isLooping = true
-                    mediaPlayer!!.setAudioAttributes(
-                        AudioAttributes.Builder()
-                            .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                            .setLegacyStreamType(AudioManager.STREAM_MUSIC)
-                            .setUsage(AudioAttributes.USAGE_MEDIA)
-                            .build()
-                    )
-                    mediaPlayer!!.setDataSource(requireContext(), music)
-                    mediaPlayer!!.prepare()
-                    mediaPlayer!!.start()
                     buttonPlay.setImageResource(R.drawable.pause)
-                    startSeekBar(inf)
-                    seekBar.isEnabled = true
-                } else {
-                    if (mediaPlayer!!.isPlaying) {
-                        mediaPlayer!!.pause()
-                        buttonPlay.setImageResource(R.drawable.play)
-                    } else {
+                    mediaPlayer = FFmpegMediaPlayer()
+                    mediaPlayer!!.isLooping = true
+                    mediaPlayer!!.setAudioStreamType(AudioManager.STREAM_MUSIC)
+                    mediaPlayer!!.setOnPreparedListener {
                         mediaPlayer!!.start()
-                        buttonPlay.setImageResource(R.drawable.pause)
                         startSeekBar(inf)
+                    }
+
+                    mediaPlayer!!.setDataSource(requireContext(), music)
+                    mediaPlayer!!.prepareAsync()
+
+                    mediaPlayer!!.setOnErrorListener { _, _, _ ->
+                        buttonPlay.setImageResource(R.drawable.play)
+                        Toast.makeText(context, getText(R.string.invalid_link), Toast.LENGTH_SHORT).show()
+                        return@setOnErrorListener false
+                    }
+
+                    mediaPlayer!!.setOnCompletionListener {
+                        mediaPlayer!!.stop()
+                        mediaPlayer!!.release()
+                        mediaPlayer = null
+                    }
+
+                } else {
+                    if (mediaPlayer != null) {
+                        if (mediaPlayer!!.isPlaying) {
+                            mediaPlayer!!.pause()
+                            buttonPlay.setImageResource(R.drawable.play)
+                        } else {
+                            mediaPlayer!!.start()
+                            buttonPlay.setImageResource(R.drawable.pause)
+                            startSeekBar(inf)
+                        }
                     }
                 }
             } else {
@@ -117,7 +127,7 @@ class AudioLinkFragment : Fragment() {
 
     private fun startSeekBar(inf: View) {
         seekBar.max = mediaPlayer!!.duration
-
+        seekBar.isEnabled = true
         Thread {
             try {
                 while (mediaPlayer!!.isPlaying) {
