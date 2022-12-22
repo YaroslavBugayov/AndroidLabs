@@ -2,6 +2,8 @@
 Laboratory works for course Development of mobile applications for Android
 
 All laboratory works are in this one repository.
+The program code can be seen at the link:
+https://github.com/YaroslavBugayov/AndroidLabs/tree/main/app/src/main/java/com/bugayov/labs
 
 Code explanations are at the links below.
 
